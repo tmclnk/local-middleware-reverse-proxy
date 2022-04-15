@@ -15,18 +15,26 @@ Use this sort of thing when you need to run a bunch of services behind a single 
 
 ## Usage
 
+Log in to GCR so you can pull images. You may need to [install gcloud cli](https://cloud.google.com/sdk/docs/install).
+
+```sh
+gcloud init
+gcloud auth login
+gcloud auth configure-docker
+```
+
+Launch the services.
 
 ```sh
 docker-compose up --abort-on-container-exit
 ```
-
 ## Using a Local Container
 
 You may want to route back to your host machine for a particular endpoint. For example,
 if I'm running the `widges-api` service in my IDE on port 8080, then modify [default.conf](conf.d/default.conf) accordigly.
 
 
-```
+```nginx
 location /widgets-api {
     proxy_pass http://host.docker.internal:8080/widgets;
 }
@@ -34,15 +42,7 @@ location /widgets-api {
 
 ## Redis
 
-Redis will be exposed to the host on port 6379. You can point to it in apps by setting the environment variable `REDIS_HOST=localhost`.
-
-## Google Container Registry
-
-```sh
-gcloud init
-gcloud auth login
-gcloud auth configure-docker
-```
+Redis will be exposed to the host machine on port 6379. You can point to it in apps by setting the environment variable `REDIS_HOST=localhost`.
 
 ## Related Links
 
