@@ -7,7 +7,7 @@ are the short-hash of the commits they were built from in github.
 
 Use this sort of thing when you need to run a bunch of services behind a host:port. This one uses nginx.
 
-![network diagram](docs/local-middleware-apis.png)
+![network diagram](docs/network.png)
 
 ## Requirements
 
