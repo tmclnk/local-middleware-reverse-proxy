@@ -23,7 +23,7 @@ docker-compose up --abort-on-container-exit
 ## Using a Local Container
 
 You may want to route back to your host machine for a particular endpoint. For example,
-if I'm running the `widges-api` service in my IDE on port 8080, then modify [default.conf](includes/default.conf) accordigly.
+if I'm running the `widges-api` service in my IDE on port 8080, then modify [default.conf](conf.d/default.conf) accordigly.
 
 
 ```
