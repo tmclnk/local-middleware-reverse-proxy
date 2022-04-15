@@ -1,0 +1,32 @@
+
+
+version: "3.9"
+services:
+  nginx:
+    # build: .
+    ports:
+      - 80:80
+    volumes:
+      - ./conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
+
+  # Comment out servicse you plan to develop locally and edit the
+  # default.conf with `docker.host.internal` instead of the
+  # service name.
+  session-api:
+    image: gcr.io/a2w-staging/session-api:a6a7de1
+    environment:
+      REDIS_HOST: redis
+  customers-api:
+    image: gcr.io/a2w-staging/customers-api:78c9734
+    environment:
+      REDIS_HOST: redis
+  users-api:
+    image: gcr.io/a2w-staging/users-api:773de6a
+    environment:
+      REDIS_HOST: redis
+  redis:
+    image: redis
+    # Expose the port to the host machine so that it can be used for local
+    # developnment.
+    ports:
+      - "6379:6379"
