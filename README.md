@@ -40,6 +40,7 @@ if I'm running the `widges-api` service in my IDE on port 8080, then modify [def
 
 ```nginx
 location /widgets-api {
+    # proxy_pass http://widgets-api:8080/widgets;
     proxy_pass http://host.docker.internal:8080/widgets;
 }
 ```
