@@ -17,6 +17,11 @@ services:
     image: gcr.io/a2w-staging/session-api:a6a7de1
     environment:
       REDIS_HOST: redis
+  
+  accounts-receivable-api:
+    image: gcr.io/a2w-staging/accounts-receivable-api:9ac1af3
+    environment:
+      REDIS_HOST: redis
   customers-api:
     image: gcr.io/a2w-staging/customers-api:78c9734
     environment:
