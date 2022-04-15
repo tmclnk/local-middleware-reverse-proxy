@@ -1,5 +1,6 @@
-
-
+################################################################################
+# Some services behind a reverse proxy.
+################################################################################
 version: "3.9"
 services:
   nginx:
@@ -9,7 +10,7 @@ services:
     volumes:
       - ./conf.d:/etc/nginx/conf.d:ro
 
-  # Comment out servicse you plan to develop locally and edit the
+  # Comment out services you plan to develop locally and edit the
   # default.conf with `docker.host.internal` instead of the
   # service name.
   session-api:
@@ -24,6 +25,10 @@ services:
     image: gcr.io/a2w-staging/users-api:773de6a
     environment:
       REDIS_HOST: redis
+  
+  # the swagger ui
+  houston-api-docs:
+    image: gcr.io/a2w-staging/houston-api-docs:da64030
   redis:
     image: redis
     # Expose the port to the host machine so that it can be used for local

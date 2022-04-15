@@ -1,7 +1,9 @@
 # Barebones Local Reverse Proxy
 
 A [docker-compose.yaml](docker-compose.yaml) with a reverse proxy. Requires Docker
-and access to the repo where your containers are stored. 
+and access to the repo where your containers are stored. We're using hardcoded
+tags, as we have no `latest` or `develop` image tags to reference. The tags
+are the short-hash of the commits they were built from in github.
 
 Use this sort of thing when you need to run a bunch of services behind a single url. This one uses nginx.
 
