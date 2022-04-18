@@ -22,7 +22,6 @@ for entry in ${!repos[@]}; do
 		-H "Accept: application/vnd.github.v3.sha" \
 		"https://api.github.com/repos/$owner/$repo/commits/$branch")
 	gsed -i -e "s/$repo:[a-f0-9]\{7\}/$repo:${hash:0:7}/" docker-compose.yaml
-
 done
 
 

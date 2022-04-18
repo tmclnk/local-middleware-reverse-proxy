@@ -13,11 +13,15 @@ services:
   # Comment out services you plan to develop locally and edit the
   # default.conf with `docker.host.internal` instead of the
   # service name.
+  
+  # the swagger ui
+  # TODO this repo's tag doesn't seem to match the latest `main` commit
+  houston-api-docs:
+    image: gcr.io/a2w-staging/houston-api-docs:89a3bb5
   session-api:
     image: gcr.io/a2w-staging/session-api:4641420
     environment:
       REDIS_HOST: redis
-  
   accounts-receivable-api:
     image: gcr.io/a2w-staging/accounts-receivable-api:f6f4188
     environment:
@@ -30,10 +34,6 @@ services:
     image: gcr.io/a2w-staging/users-api:773de6a
     environment:
       REDIS_HOST: redis
-  
-  # the swagger ui
-  houston-api-docs:
-    image: gcr.io/a2w-staging/houston-api-docs:89a3bb5
   redis:
     image: redis
     # Expose the port to the host machine so that it can be used for local
