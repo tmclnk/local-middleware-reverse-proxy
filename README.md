@@ -56,6 +56,21 @@ location /node_modules {
 }
 ```
 
+## Looking up Container Image Hashes
+
+We don't tag `latest` in our container repository, but you can look them up in github if you have a PAT.
+
+```sh
+github_pat=YOUR_PAT
+branch=develop
+repo=session-api
+hash=$(curl -s -H "Authorization: token $github_pat" \
+    -H "Accept: application/vnd.github.v3.sha" \
+    "https://api.github.com/repos/dmsi-io/$repo/commits/$branch")
+
+gsed -i -e "s/$repo:[a-f0-9]\{7\}/$repo:${hash:0:7}/" docker-compose.yaml
+```
+
 ## Redis
 
 Redis will be exposed to the host machine on port 6379. You can point to it in apps by setting the environment variable `REDIS_HOST=localhost`.
