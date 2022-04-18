@@ -14,12 +14,12 @@ services:
   # default.conf with `docker.host.internal` instead of the
   # service name.
   session-api:
-    image: gcr.io/a2w-staging/session-api:a6a7de1
+    image: gcr.io/a2w-staging/session-api:4641420
     environment:
       REDIS_HOST: redis
   
   accounts-receivable-api:
-    image: gcr.io/a2w-staging/accounts-receivable-api:9ac1af3
+    image: gcr.io/a2w-staging/accounts-receivable-api:f6f4188
     environment:
       REDIS_HOST: redis
   customers-api:
@@ -33,7 +33,7 @@ services:
   
   # the swagger ui
   houston-api-docs:
-    image: gcr.io/a2w-staging/houston-api-docs:da64030
+    image: gcr.io/a2w-staging/houston-api-docs:89a3bb5
   redis:
     image: redis
     # Expose the port to the host machine so that it can be used for local
