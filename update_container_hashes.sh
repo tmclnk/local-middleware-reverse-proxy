@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -e
+
 
 if ! command -v bw &> /dev/null ; then
 	<&2 echo "Expecting bitwarden cli (bw) to be available with a github pat stored under \"github pat\""	
@@ -15,7 +17,7 @@ repos[users-api]=develop
 repos[session-api]=develop
 repos[houston-api-docs]=main
 
-for entry in ${!repos[@]}; do
+for entry in "${!repos[@]}"; do
 	repo=$entry
 	branch="${repos[$entry]}"
 	hash=$(curl -s -H "Authorization: token $github_pat" \
