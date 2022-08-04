@@ -16,22 +16,18 @@ services:
   
   # the swagger ui
   # TODO this repo's tag doesn't seem to match the latest `main` commit
-  houston-api-docs:
-    image: gcr.io/a2w-staging/houston-api-docs:89a3bb5
+  # houston-api-docs:
+  #  image: gcr.io/a2w-staging/houston-api-docs:89a3bb5
   session-api:
-    image: gcr.io/a2w-staging/session-api:4641420
+    image: gcr.io/a2w-staging/session-api:develop
     environment:
       REDIS_HOST: redis
   accounts-receivable-api:
-    image: gcr.io/a2w-staging/accounts-receivable-api:f6f4188
+    image: gcr.io/a2w-staging/accounts-receivable-api:develop
     environment:
       REDIS_HOST: redis
   customers-api:
-    image: gcr.io/a2w-staging/customers-api:78c9734
-    environment:
-      REDIS_HOST: redis
-  users-api:
-    image: gcr.io/a2w-staging/users-api:773de6a
+    image: gcr.io/a2w-staging/customers-api:develop
     environment:
       REDIS_HOST: redis
   redis:
