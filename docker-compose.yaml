@@ -30,6 +30,12 @@ services:
     image: gcr.io/a2w-staging/customers-api:develop
     environment:
       REDIS_HOST: redis
+ 
+  # graphql-api will stitch together the graphql endpoints for the services
+  # defined in its resourceUrls.ts file
+  graphql-api:
+    image: gcr.io/a2w-staging/graphql-api:develop
+    
   redis:
     image: redis
     # Expose the port to the host machine so that it can be used for local
