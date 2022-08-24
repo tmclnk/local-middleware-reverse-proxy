@@ -22,19 +22,29 @@ services:
     image: gcr.io/a2w-staging/session-api:develop
     environment:
       REDIS_HOST: redis
+      PORT: 80
   accounts-receivable-api:
     image: gcr.io/a2w-staging/accounts-receivable-api:develop
     environment:
       REDIS_HOST: redis
+      PORT: 80
   customers-api:
     image: gcr.io/a2w-staging/customers-api:develop
     environment:
       REDIS_HOST: redis
+      PORT: 80
  
   # graphql-api will stitch together the graphql endpoints for the services
   # defined in its resourceUrls.ts file
   graphql-api:
     image: gcr.io/a2w-staging/graphql-api:develop
+    # image: graphql-api:dx-improvements
+    environment:
+      NODE_ENV: development
+  log-receiver:
+    image: gcr.io/a2w-staging/log-receiver:develop
+    environment:
+      PORT: 80
     
   redis:
     image: redis
@@ -42,3 +52,5 @@ services:
     # developnment.
     ports:
       - "6379:6379"
+  
+
