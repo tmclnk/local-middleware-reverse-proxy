@@ -74,6 +74,5 @@ gsed -e "s/$repo:[[:alnum:]_-]\+/$repo:${hash:0:7}/" docker-compose.yaml
 
 - [gcloud authentication](https://cloud.google.com/container-registry/docs/advanced-authentication#gcloud-helper)
 - [DMSi GCR](https://console.cloud.google.com/gcr/images/a2w-staging?authuser=0&project=a2w-staging)
-- [Houston API Docs](https://houston-api-docs.dmsi.io/)
 
 [docker-compose]: ./docker-compose.yaml
