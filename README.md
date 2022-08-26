@@ -45,11 +45,15 @@ location /widgets-api {
 }
 ```
 
+## Redis
+
+Redis will be exposed to the host machine on port 6379. You can point to it in apps by setting the environment variable `REDIS_HOST=localhost`.
+
 ## Troubleshooting
 
 - Is Docker Running?
 
-## Looking up Container Image Hashes
+### Looking up Container Image Hashes
 
 Some containers aren't tagged with a branch name. You can use
 the first 7 characters of the sha hash of the commit to identify
@@ -65,9 +69,6 @@ hash=$(gh api --header 'Accept: application/vnd.github.v3.sha' --method GET "/re
 gsed -e "s/$repo:[[:alnum:]_-]\+/$repo:${hash:0:7}/" docker-compose.yaml
 ```
 
-## Redis
-
-Redis will be exposed to the host machine on port 6379. You can point to it in apps by setting the environment variable `REDIS_HOST=localhost`.
 
 ## Related Links
 
