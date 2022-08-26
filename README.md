@@ -45,17 +45,6 @@ location /widgets-api {
 }
 ```
 
-## Using Local Swagger UI
-
-To use a local swagger UI instead of a pre-built one, launch swagger-ui locally (localhost:3000) and change the all the `houston-api-docs` entries to point to `host.docker.internal:3000` instead, e.g.
-
-```nginx
-location /node_modules {
-    # proxy_pass http://houston-api-docs:80;
-    proxy_pass http://host.docker.internal:3000;
-}
-```
-
 ## Looking up Container Image Hashes
 
 We don't tag `latest` in our container repository, but you can look them up in github if you have a PAT.
