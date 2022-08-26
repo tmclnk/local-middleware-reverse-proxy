@@ -86,7 +86,6 @@ services:
   # defined in its resourceUrls.ts file
   graphql-api:
     image: gcr.io/a2w-staging/graphql-api:develop
-    # image: graphql-api:dx-improvements
     environment:
       NODE_ENV: development
   log-receiver:
