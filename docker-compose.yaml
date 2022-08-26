@@ -13,26 +13,93 @@ services:
   # Comment out services you plan to develop locally and edit the
   # default.conf with `docker.host.internal` instead of the
   # service name.
-  
-  # the swagger ui
-  # TODO this repo's tag doesn't seem to match the latest `main` commit
-  # houston-api-docs:
-  #  image: gcr.io/a2w-staging/houston-api-docs:89a3bb5
+  #
+  # Full list of required services can be found at 
+  # https://github.com/dmsi-io/graphql-api/blob/develop/src/resources/resourceUrls.ts
+  viewers-api:
+    # TODO viewers-api missing from a2w-staging?
+    image: gcr.io/a2w-prod/viewers-api:v6.2.0
+    environment:
+      REDIS_HOST: redis
+      PORT: 80
   session-api:
     image: gcr.io/a2w-staging/session-api:develop
     environment:
       REDIS_HOST: redis
-  accounts-receivable-api:
-    image: gcr.io/a2w-staging/accounts-receivable-api:develop
+      PORT: 80
+    depends_on:
+      - redis
+  datafiles-api:
+    image: gcr.io/a2w-staging/datafiles-api:develop
     environment:
       REDIS_HOST: redis
+      PORT: 80
   customers-api:
     image: gcr.io/a2w-staging/customers-api:develop
     environment:
       REDIS_HOST: redis
+      PORT: 80
+  projects-api:
+    image: gcr.io/a2w-staging/projects-api:develop
+    environment:
+      REDIS_HOST: redis
+      PORT: 80
+  users-api:
+    # TODO users-api missing from a2w-staging?
+    image: gcr.io/a2w-prod/users-api:v6.2.0
+    environment:
+      REDIS_HOST: redis
+      PORT: 80
+    depends_on:
+      - redis
+  settings-api:
+    image: gcr.io/a2w-staging/settings-api:develop
+    environment:
+      REDIS_HOST: redis
+      PORT: 80
+  mwt-api:
+    # TODO mwt-api does not having `develop` tag in a2w-staging
+    image: gcr.io/a2w-prod/mwt-api:v0.3.0
+    environment:
+      REDIS_HOST: redis
+      PORT: 80
+  metadata-api:
+    image: gcr.io/a2w-staging/metadata-api:develop
+    environment:
+      REDIS_HOST: redis
+      PORT: 80
+  accounts-receivable-api:
+    image: gcr.io/a2w-staging/accounts-receivable-api:develop
+    environment:
+      REDIS_HOST: redis
+      PORT: 80
+  general-ledger-api:
+    image: gcr.io/a2w-staging/general-ledger-api:develop
+    environment:
+      REDIS_HOST: redis
+      PORT: 80
+  reman-api:
+    image: gcr.io/a2w-staging/reman-api:8d01357
+    environment:
+      REDIS_HOST: redis
+      PORT: 80
+ 
+  # graphql-api will stitch together the graphql endpoints for the services
+  # defined in its resourceUrls.ts file
+  graphql-api:
+    image: gcr.io/a2w-staging/graphql-api:develop
+    environment:
+      NODE_ENV: development
+  log-receiver:
+    image: gcr.io/a2w-staging/log-receiver:develop
+    environment:
+      PORT: 80
+    
   redis:
     image: redis
     # Expose the port to the host machine so that it can be used for local
     # developnment.
     ports:
       - "6379:6379"
+  
+
