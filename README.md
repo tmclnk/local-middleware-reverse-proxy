@@ -45,6 +45,10 @@ location /widgets-api {
 }
 ```
 
+## Troubleshooting
+
+- Is Docker Running?
+
 ## Looking up Container Image Hashes
 
 We don't tag `latest` in our container repository, but you can look them up in github if you have a PAT.
