@@ -33,10 +33,10 @@ docker-compose up --abort-on-container-exit
 
 The proxy will listen on [localhost](http://localhost) and expose the swagger-ui for [houston-api-docs](https://github.com/dmsi-io/houston-api-docs).
 
-## Using a Local Container for a Service
+## Using a Local Process for a Service
 
 You may want to route back to your host machine for a particular endpoint. For example,
-if I'm running the `widges-api` service in my IDE on port 8080, then modify [default.conf](conf.d/default.conf) accordigly.
+if I'm running the `widgets-api` service in my IDE on port 8080, then modify [default.conf](conf.d/default.conf) accordigly.
 
 ```nginx
 location /widgets-api {
