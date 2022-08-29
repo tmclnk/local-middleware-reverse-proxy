@@ -9,6 +9,8 @@ services:
       - 80:80
     volumes:
       - ./conf.d:/etc/nginx/conf.d:ro
+    depends_on:
+      - graphql-api
 
   # Comment out services you plan to develop locally and edit the
   # default.conf with `docker.host.internal` instead of the
@@ -63,6 +65,8 @@ services:
     environment:
       REDIS_HOST: redis
       PORT: 80
+    depends_on:
+      - redis
   metadata-api:
     image: gcr.io/a2w-staging/metadata-api:develop
     environment:
@@ -86,10 +90,30 @@ services:
  
   # graphql-api will stitch together the graphql endpoints for the services
   # defined in its resourceUrls.ts file
+  #  graphql-api:
+  #    # image: gcr.io/a2w-staging/graphql-api:develop
+  #    image: graphql-api:local
+  #    command:
+  #      - node
+  #      - "--inspect-brk=0.0.0.0" # -brk will wait til debugger connects to continue
+  #      - server/index.js 
+  #    ports:
+  #      - "9229:9229" # nodejs debug port
+  #    environment:
+  #      NODE_ENV: development
   graphql-api:
-    image: gcr.io/a2w-staging/graphql-api:develop
+    # image: gcr.io/a2w-staging/graphql-api:develop
+    image: node:18
+    # command: sh -c 'cd /app && node --inspect-brk=0.0.0.0 ./src/index.ts'
+    command: sh -c 'cd /app && node --inspect=0.0.0.0 ./src/index.ts'
+    ports:
+      - "9229:9229" # nodejs debug port
+      - "8888:8080"
+    volumes:
+      - $HOME/tmp/graphql-api:/app
     environment:
       NODE_ENV: development
+      NODE_OPTIONS: "-r ts-node/register"
   log-receiver:
     image: gcr.io/a2w-staging/log-receiver:develop
     environment:
