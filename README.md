@@ -72,7 +72,7 @@ gsed -e "s/$repo:[[:alnum:]_-]\+/$repo:${hash:0:7}/" docker-compose.yaml
 
 ## Related Links
 
-- [gcloud authentication](https://cloud.google.com/container-registry/docs/advanced-authentication#gcloud-helper)
+- [gcloud authentication for docker](https://cloud.google.com/container-registry/docs/advanced-authentication#gcloud-helper)
 - [DMSi GCR](https://console.cloud.google.com/gcr/images/a2w-staging?authuser=0&project=a2w-staging)
 
 [docker-compose]: ./docker-compose.yaml
